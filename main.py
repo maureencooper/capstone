@@ -23,3 +23,9 @@ def get_top_10_dates(dataframe):
     df['date'] = pd.to_datetime(df['date'], format='%y%m%d')
 
     return df['date'].value_counts()[:10].sort_values(ascending=False)
+
+
+def get_top_10_hashtags(dataframe):
+    df = dataframe.copy()
+
+    return df['content'].str.findall(r'#.*?(?=\s|$)').value_counts()[:10].sort_values(ascending=False)
