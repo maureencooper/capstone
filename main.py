@@ -16,3 +16,10 @@ def get_top_10_active_users(dataframe):
     users = pd.DataFrame(users)
 
     return users['id'].value_counts()[:10].sort_values(ascending=False)
+
+
+def get_top_10_dates(dataframe):
+    df = dataframe.copy()
+    df['date'] = pd.to_datetime(df['date'], format='%y%m%d')
+
+    return df['date'].value_counts()[:10].sort_values(ascending=False)
